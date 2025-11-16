@@ -1,12 +1,14 @@
+import { memo } from 'react'
+
 const TodoItem = (props) => {
   const {
-    className= '',
+    className = '',
     id,
     title,
     isDone,
+    ref,
     onDeleteTaskButtonClick,
     onTaskCompleteChange,
-    ref,
   } = props
 
   return (
@@ -16,13 +18,13 @@ const TodoItem = (props) => {
         id={id}
         type="checkbox"
         checked={isDone}
-        onChange={({target}) => {
+        onChange={({ target }) => {
           onTaskCompleteChange(id, target.checked)
         }}
       />
       <label
         className="todo-item__label"
-        htmlFor="task-1"
+        htmlFor={id}
       >
         {title}
       </label>
@@ -52,4 +54,4 @@ const TodoItem = (props) => {
   )
 }
 
-export default TodoItem
+export default memo(TodoItem)
