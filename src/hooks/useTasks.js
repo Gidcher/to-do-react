@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import tasksAPI from '../api/taskAPI'
+import tasksAPI from '../api/tasksAPI'
 
 const useTasks = () => {
   const [tasks, setTasks] = useState([])
@@ -49,14 +49,12 @@ const useTasks = () => {
     }
 
     tasksAPI.add(newTask)
-      .then((response) => response.json())
       .then((addedTask) => {
         setTasks((prevTasks) => [...prevTasks, addedTask])
         setNewTaskTitle('')
         setSearchQuery('')
         newTaskInputRef.current.focus()
       })
-
   }, [])
 
   useEffect(() => {
